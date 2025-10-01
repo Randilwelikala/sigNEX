@@ -21,6 +21,7 @@ body{
   -moz-osx-font-smoothing:grayscale;
 }
 
+
 .sidebar{
   width:220px;
   position:fixed;
@@ -135,6 +136,11 @@ body{
   display:flex;
   flex-direction:column;
   transition: margin-left 0.3s ease;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
 }
 
 .topbar{
@@ -376,12 +382,13 @@ body{
     margin:0 auto
 }
 
-.overview{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:14px;
-    margin-bottom:18px
+.overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 14px; 
+    margin-right: 35px;
 }
+
 
 .ovCard{
     background:var(--panel);
@@ -430,7 +437,7 @@ body{
 
 .mainGrid{
     display:grid;
-    grid-template-columns:1fr 320px;
+    grid-template-columns:1fr 15px;
     gap:22px
 }
 
