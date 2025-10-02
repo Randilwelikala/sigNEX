@@ -1,5 +1,5 @@
 const waitingForYou = [
-  { id: 1, title: "Document F", time: "22:33, 11 Aug 2025", sender: "Randil", due: "Due in 1 day", label: "NDA Contract", severity: "red" },
+  { id: 1, title: "Document F", time: "22:33, 11 Aug 2025", sender: "Randil", due: "Due in 1 day", label: "NDA Contract", severity: "red",priority: 'High',projectId: 'ALPHA-001',description: 'Review and sign the Non-Disclosure Agreement for the new client onboarding.',assignedTo: 'Legal Team' },
   { id: 2, title: "Document G", time: "22:33, 11 Aug 2025", sender: "Sahan", due: "Due in 3 days", label: "Contract", severity: "orange" },
   { id: 3, title: "Document H", time: "22:33, 11 Aug 2025", sender: "Tharukshi", due: "Due in 6 days", label: "Audit", severity: "green" },
   { id: 3, title: "Document I", time: "22:33, 11 Aug 2025", sender: "Nisandi", due: "Due in 3 days", label: "Audit", severity: "green" }
@@ -41,7 +41,16 @@ function renderTaskList(list) {
           </div>
         </div>
         <div class="taskActions" aria-hidden="true">
+        <div class="myDIV">
           <i class="fa-solid fa-eye" title="View"></i>
+           <div class="hide"><div class="card-body p-2">
+            <h6 class="card-title mb-1">${item.due}</h6>
+            <p class="card-text small text-muted">
+                ${item.description}
+            </p>
+        </div></div>
+          </div>
+         
           <i class="fa-solid fa-pen" title="Edit"></i>
           <i class="fa-regular fa-bell" title="Remind"></i>
           <i class="fa-solid fa-xmark" title="Remove"></i>

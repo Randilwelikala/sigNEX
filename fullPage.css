@@ -399,6 +399,11 @@ body{
     transition: background-color 0.2s ease-in-out;
 
 }
+
+.ovCard:hover .details-popup {
+    display: block;
+}
+
 .ovIcon{
     width:48px;
     height:48px;
@@ -431,11 +436,13 @@ body{
 .mainGrid{
     display:grid;
     grid-template-columns:1fr 320px;
-    gap:22px
+    gap:22px;
+    overflow: visible !important;
 }
 
 .tasksColumn{
-    background:transparent
+    background:transparent;
+    overflow: visible !important;
 }
 
 .tasksHeader{
@@ -472,7 +479,8 @@ body{
 }
 
 .taskList{
-    margin-top:6px
+    margin-top:6px;
+    overflow: visible !important;
 }
 
 .taskRow{
@@ -483,7 +491,8 @@ body{
     padding:14px;
     border-radius:10px;
     border:1px solid rgba(15,23,36,0.03);
-    margin-bottom:10px;gap:8px
+    margin-bottom:10px;gap:8px;
+    overflow: visible !important;
 }
 
 .taskLeft{
@@ -734,6 +743,59 @@ body{
 .muted{
     color:var(--muted);
     font-size:13px
+}
+
+
+.overviewCart {
+    position: relative; 
+    display: inline-block; 
+    cursor: pointer;
+}
+
+.details-popup {
+    display: none;
+    background-color: #fff;
+    border-radius:10px;
+    position: absolute;
+    z-index: 999;         
+    width: 400px;         
+    padding: 5px;
+    top: 100%;            
+    left: 50%;            
+    transform: translateX(-50%); 
+    margin-top: 2px;      
+}
+
+
+.overviewCart:hover .details-popup {
+    display: block;
+}
+
+.myDIV {
+    position: relative; 
+    display: inline-block; 
+}
+
+
+.myDIV:hover > .hide,
+.myDIV:hover .hide  
+{
+    display: block;
+}
+
+.hide {
+    display: none;
+    background-color: #842acd;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 9999; 
+    width: 400px; 
+    padding: 5px;
+    
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    margin-top: 2px; 
 }
 
 @media (max-width:1000px){
