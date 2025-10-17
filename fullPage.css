@@ -755,48 +755,38 @@ body{
 .details-popup {
     display: none;
     background-color: #fff;
+    border:solid 1px #0a2a66;
     border-radius:10px;
     position: absolute;
     z-index: 999;         
     width: 400px;         
+    padding-top: 0px;
     padding: 5px;
     top: 100%;            
     left: 50%;            
     transform: translateX(-50%); 
-    margin-top: 2px;      
+    margin-top: 1px;      
 }
 
 
 .overviewCart:hover .details-popup {
     display: block;
 }
-
-.myDIV {
-    position: relative; 
-    display: inline-block; 
-}
-
-
-.myDIV:hover > .hide,
-.myDIV:hover .hide  
-{
-    display: block;
-}
-
 .hide {
     display: none;
-    background-color: #842acd;
+    background-color: #fff;
+    border:solid 1px #0a2a66;
+    color: #0a2a66;
     border-radius: 10px;
-    position: absolute;
-    z-index: 9999; 
-    width: 400px; 
-    padding: 5px;
-    
-    top: 100%; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    margin-top: 2px; 
+    z-index: 99999;
+    width: 400px;
+    padding: 10px;
+    overflow: auto;
 }
+.global-popup {
+    position: fixed;
+}
+
 
 @media (max-width:1000px){
   .overview{grid-template-columns:repeat(2,1fr)}

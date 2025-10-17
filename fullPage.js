@@ -41,15 +41,9 @@ function renderTaskList(list) {
           </div>
         </div>
         <div class="taskActions" aria-hidden="true">
-        <div class="myDIV">
-          <i class="fa-solid fa-eye" title="View"></i>
-           <div class="hide"><div class="card-body p-2">
-            <h6 class="card-title mb-1">${item.due}</h6>
-            <p class="card-text small text-muted">
-                ${item.description}
-            </p>
-        </div></div>
-          </div>
+        
+          <i class="fa-solid fa-eye" title="View" data-task-id="${item.id}"></i>
+           
          
           <i class="fa-solid fa-pen" title="Edit"></i>
           <i class="fa-regular fa-bell" title="Remind"></i>
@@ -61,6 +55,77 @@ function renderTaskList(list) {
 
   gsap.from(".taskRow", {opacity:0, y:18, stagger:0.08, duration:0.45, ease: "power2.out"});
 }
+
+
+// Global Pop-up 
+
+const globalTaskPopup = document.getElementById('taskDetailsPopup');
+
+
+function getTaskItem(taskId) {
+    
+    const currentList = tabYou.classList.contains('active') ? waitingForYou : waitingForOthers;
+    
+    return currentList.find(t => t.id == taskId); 
+}
+
+function handleTaskHover(e) {
+    const icon = e.target.closest('.fa-solid.fa-eye');
+    const relatedTarget = e.relatedTarget;
+
+    if (e.type === 'mouseout') {
+       
+        if (!relatedTarget || (!icon && !globalTaskPopup.contains(relatedTarget))) {
+            globalTaskPopup.style.display = 'none';
+        }
+        return; 
+    }
+
+    if (icon) {
+        const taskId = icon.getAttribute('data-task-id');
+        const item = getTaskItem(taskId);
+        
+        if (!item || globalTaskPopup.style.display === 'block') {
+            return; 
+        }
+
+       
+        globalTaskPopup.innerHTML = `
+            <div class="card-body p-2" style="color:#0a2a66;">
+                <h6 class="card-title mb-1">${item.due || 'N/A'} - ${item.label}</h6>
+                <div class="small mb-1">
+                    Priority: ${item.priority || 'N/A'} | Project: ${item.projectId || 'N/A'}
+                </div>
+                <p class="card-text small text-white-50">
+                    ${item.description || 'No detailed description provided.'}
+                </p>
+                <div class="small">Sender: ${item.sender}</div>
+            </div>
+        `;
+
+        
+        const iconRect = icon.getBoundingClientRect(); 
+        const popupWidth = 400; 
+
+        let leftPos = iconRect.left + iconRect.width / 2 - (popupWidth / 2);
+        let topPos = iconRect.bottom + 8;
+
+        const viewportWidth = window.innerWidth;
+        if (leftPos < 10) leftPos = 10; 
+        if (leftPos + popupWidth > viewportWidth - 10) {
+            leftPos = viewportWidth - popupWidth - 10; 
+        }
+
+        globalTaskPopup.style.left = `${leftPos}px`;
+        globalTaskPopup.style.top = `${topPos}px`;
+        
+        globalTaskPopup.style.display = 'block';
+    }
+}
+
+taskList.addEventListener('mouseover', handleTaskHover);
+taskList.addEventListener('mouseout', handleTaskHover);
+
 
 function updateBadges(){
   badgeYou.textContent = waitingForYou.length;
@@ -191,3 +256,5 @@ const hamburgerBtn = document.getElementById('hamburgerBtn');
 hamburgerBtn.addEventListener('click', () => {
     document.querySelector('.sidebar').classList.toggle('open');
 });
+
+
